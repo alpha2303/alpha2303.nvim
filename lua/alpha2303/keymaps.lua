@@ -13,7 +13,7 @@ vim.keymap.set("n", "<leader>cf", function()
 end)
 
 -- Open current working directory
-vim .keymap.set("n", "<leader>cd", function()
+vim.keymap.set("n", "<leader>cd", function()
 	vim.cmd.Ex(cwd)
 end)
 
@@ -31,17 +31,10 @@ else
 	print("Gitbash not detected at '" .. gitbash_path .. "'. Skipping keymaps...")
 end
 
--- Set up telescope keymaps, if available
-local ok, telescope = pcall(require, "telescope")
-if not ok then
-	print("Telescope not installed. Skipping keymaps...")
-else
-	local builtin = require("telescope.builtin")
-	vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Find files" })
-	vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Search text" })
-	vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "List buffers" })
-	vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Help tags" })
-	vim.keymap.set("n", "<leader>fc", builtin.commands, { desc = "Fuzzy search all commands" })
-end
+-- Diagnostics keymaps
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show Diagnostics" })
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to Previous Diagnostic" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to Next Diagnostic" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Set Location List" })
 
 print("Loaded configs: alpha2303.remap")

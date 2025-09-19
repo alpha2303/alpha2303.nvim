@@ -43,5 +43,8 @@ return {
 		vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "List buffers" })
 		vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "Help tags" })
 		vim.keymap.set("n", "<leader>fc", builtin.commands, { desc = "Fuzzy search all commands" })
+		vim.keymap.set("n", "<leader>ld", builtin.lsp_definitions, { desc = "Go to Definition" })
+		vim.keymap.set("n", "<leader>lr", builtin.lsp_references, { desc = "References" })
+		
 	end,
 }
