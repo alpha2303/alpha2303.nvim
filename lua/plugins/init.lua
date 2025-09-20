@@ -10,4 +10,5 @@ return {
 	require("plugins.mason"),
 	require("plugins.copilot_cmp"),
 	require("plugins.venvselect"),
+	require("plugins.neotree"),
 }

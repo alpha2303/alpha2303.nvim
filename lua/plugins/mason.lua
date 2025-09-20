@@ -14,7 +14,7 @@ return {
     config = function()
       local mason_lsp = require("mason-lspconfig")
       mason_lsp.setup({
-        ensure_installed = { "ruff", "eslint-lsp", "prettierd", "lua_ls" }, -- add your servers
+        ensure_installed = { "ruff", "eslint", "prettierd", "lua_ls", "bashls", "gopls", "html", "cssls", "jsonls", "yamlls", "taplo", "marksman" }, -- add your servers
       })
 
       vim.lsp.config("lua_ls", {

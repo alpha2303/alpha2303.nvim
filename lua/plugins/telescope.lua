@@ -36,7 +36,8 @@ return {
 		pcall(telescope.load_extension, "git_worktree")
 		pcall(telescope.load_extension, "git_status")
 		pcall(telescope.load_extension, "git_commits")
-		
+		pcall(telescope.load_extension, "venv_selector")
+
 		local builtin = require("telescope.builtin")
 		vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "Find files" })
 		vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "Search text" })

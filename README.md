@@ -16,6 +16,12 @@ Configuration files for my Neovim setup
 - undotree
 - copilot.vim
 - vim-fugitive
+- mason.nvim
+- mason-lspconfig.nvim
+- nvim-lspconfig
+- nvim-cmp
+- venv_selector.nvim
+- neotree.nvim
 
 ## Theme
 - everforest
