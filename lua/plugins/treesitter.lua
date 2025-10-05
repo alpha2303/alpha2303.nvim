@@ -1,10 +1,10 @@
-return {{
+return { {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
 	branch = "main",
 	config = function()
 		require("nvim-treesitter").setup {
-			highlight = { 
+			highlight = {
 				enable = true,
 				additional_vim_regex_highlighting = false,
 			},
@@ -14,5 +14,4 @@ return {{
 			auto_install = true,
 		}
 	end,
-}}
-
+} }

@@ -1,4 +1,5 @@
 print("Loading alpha2303.remap")
+local vim = vim
 
 local cwd = vim.fn.getcwd()
 

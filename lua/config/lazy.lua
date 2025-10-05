@@ -1,4 +1,6 @@
 print("Loading lazy.nvim...")
+local vim = vim
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "\\lazy\\lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -27,7 +29,7 @@ require("lazy").setup({
   spec = {
     -- import your plugins
     { import = "plugins.init" },
-    { 
+    {
 	    "nvim-telescope/telescope.nvim", tag = "0.1.8",
 	    dependencies = { "nvim-lua/plenary.nvim" }
     },
@@ -36,10 +38,6 @@ require("lazy").setup({
 	    lazy = false,
 	    branch = 'main',
 	    build = ':TSUpdate'
-    },
-    {
-	    "github/copilot.vim", 
-	    branch = "release",
     }
   },
   -- Configure any other settings here. See the documentation for more details.

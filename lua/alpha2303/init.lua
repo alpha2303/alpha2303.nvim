@@ -1,6 +1,8 @@
 require("alpha2303.keymaps")
 require("alpha2303.autocmds")
 
+local vim = vim
+
 -- Load the main configurations
 vim.opt.number = true
 vim.opt.relativenumber = true
