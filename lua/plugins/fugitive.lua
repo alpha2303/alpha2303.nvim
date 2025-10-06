@@ -1,3 +1,5 @@
+local vim = vim
+
 return {
   "tpope/vim-fugitive",
   config = function()

@@ -1,3 +1,5 @@
+local vim = vim
+
 return {
     "ahmedkhalf/project.nvim",
     config = function()

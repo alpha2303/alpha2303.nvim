@@ -2,34 +2,46 @@ local vim = vim
 
 local NEOTREE_SOURCES = { "filesystem", "git_status" }
 
+local get_current_source_info = function(nt_state)
+	local current_source = {}
+	for _, src in ipairs(NEOTREE_SOURCES) do
+		if nt_state and nt_state.winid and vim.api.nvim_win_is_valid(nt_state.winid) then
+			local win_buf = vim.api.nvim_win_get_buf(nt_state.winid)
+			local cur_win = vim.api.nvim_get_current_win()
+			local cur_buf = vim.api.nvim_get_current_buf()
+
+			if vim.api.nvim_buf_is_valid(win_buf) then
+				current_source = { name = src, is_focused = false }
+				if win_buf == cur_buf and cur_win == nt_state.winid then
+					current_source.is_focused = true
+				end
+			end
+			break
+		end
+	end
+
+	return current_source
+end
+
 local toggle_neovim = function(source)
 	local ok, nt_manager = pcall(require, "neo-tree.sources.manager")
 	if not ok then
 		vim.notify("Neo-tree not available", vim.log.levels.ERROR)
-		return
+		return nil
 	end
 
-	local current_source
+	local state = nt_manager.get_state(source)
 
-	for _, src in ipairs(NEOTREE_SOURCES) do
-		local state = nt_manager.get_state(src)
-		if state and state.winid and vim.api.nvim_win_is_valid(state.winid) then
-			local win_buf = vim.api.nvim_win_get_buf(state.winid)
-			if vim.api.nvim_buf_is_valid(win_buf) then
-				current_source = src
-				break
-			end
-		end
-	end
+	local current_source = get_current_source_info(state)
 
 	-- Neotree closed → open with requested source
-	if not current_source then
+	if not current_source.name then
 		vim.cmd("Neotree " .. source .. " left")
 		return
 	end
 
 	-- Neotree open with same source → close it
-	if current_source == source then
+	if current_source.name == source and current_source.is_focused then
 		vim.cmd("Neotree close")
 		return
 	end
